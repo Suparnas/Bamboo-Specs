@@ -5,6 +5,9 @@ import com.atlassian.bamboo.specs.api.builders.plan.Plan;
 import com.atlassian.bamboo.specs.api.builders.plan.PlanIdentifier;
 import com.atlassian.bamboo.specs.api.builders.project.Project;
 import com.atlassian.bamboo.specs.util.BambooServer;
+import com.atlassian.bamboo.specs.api.builders.plan.Stage;
+import com.atlassian.bamboo.specs.api.builders.plan.Job;
+import com.atlassian.bamboo.specs.builders.task.ScriptTask;
 import com.atlassian.bamboo.specs.api.builders.permission.Permissions;
 import com.atlassian.bamboo.specs.api.builders.permission.PermissionType;
 import com.atlassian.bamboo.specs.api.builders.permission.PlanPermissions;
@@ -43,20 +46,20 @@ public class PlanSpec {
 
     Project project() {
         return new Project()
-                .name("Project Name")
-                .key("PRJ");
+                .name("Mobile Internal")
+                .key("MI");
     }
 
     private Plan createPlan() {
         return new Plan(
                 project(),
-                "Plan Name", "PLANKEY")
+                "SUP", "ST")
                 .description("Plan created from (enter repository url of your plan)")
-               .stages(
-                       new Stage("Stage 1")
-                               .jobs(new Job("Build & run", "RUN")
-                                    .tasks(
-                                            new ScriptTask().inlineBody("echo Hello world!"))));
+                .stages(
+                        new Stage("Stage 1")
+                                .jobs(new Job("Build & run", "RUN")
+                                        .tasks(
+                                                new ScriptTask().inlineBody("echo Hello world!"))));
 
 
 
